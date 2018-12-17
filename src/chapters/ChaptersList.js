@@ -12,9 +12,8 @@ const handleScroll = ({ currentTarget }, onLoadMore) => {
 const ChaptersList = ({ chapters, onLoadMore }) => (
   <div>
     <div className="chapters-list" onScroll={e => handleScroll(e, onLoadMore)}>
-      {chapters.edges.map(({ node }) => (
-        <p key={node.id}>{node.title}</p>
-      ))}
+      {chapters &&
+        chapters.edges.map(({ node }) => <p key={node.id}>{node.title}</p>)}
     </div>
   </div>
 );

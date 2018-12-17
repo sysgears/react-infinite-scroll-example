@@ -17,11 +17,15 @@ const getChapters = ({ first, after = 0 }) => {
       chapter =>
         !first || (chapter.node.id > after && chapter.node.id <= after + first)
     );
+  console.log(
+    chapters[chapters.length - 1].node.id !==
+      mockChapters[mockChapters.length - 1].id
+  );
   return {
     edges: chapters,
     pageInfo: {
       endCursor: chapters[chapters.length - 1].node.id,
-      hasNextPage: chapters[chapters.length - 1].node.id !== mockChapters[mockChapters.length - 1].node.id,
+      hasNextPage: false,
       __typename: 'ChapterPageInfo'
     },
     __typename: 'ChapterPayload'
