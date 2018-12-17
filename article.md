@@ -46,7 +46,6 @@ In my case I have a list of books chapters with the next structure:
     ]
 ```
 
-I use `id` field as `cursor` here.
 As a result I got the following initial data:
 
 ```js

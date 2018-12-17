@@ -10,12 +10,17 @@ const handleScroll = ({ currentTarget }, onLoadMore) => {
 };
 
 const ChaptersList = ({ chapters, onLoadMore }) => (
-  <div>
-    <div className="chapters-list" onScroll={e => handleScroll(e, onLoadMore)}>
-      {chapters &&
-        chapters.edges.map(({ node }) => <p key={node.id}>{node.title}</p>)}
-    </div>
-  </div>
+  <ul
+    className="list-group chapters-list"
+    onScroll={e => handleScroll(e, onLoadMore)}
+  >
+    {chapters &&
+      chapters.edges.map(({ node }) => (
+        <li key={node.id} className="list-group-item">
+          {node.title}
+        </li>
+      ))}
+  </ul>
 );
 
 export default ChaptersList;

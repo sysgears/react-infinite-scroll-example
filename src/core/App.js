@@ -2,30 +2,23 @@ import React, { Component } from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
-import ChaptersListQuery from './chapters/ChaptersListQuery';
-import mockChapters from './chapters/chapters';
+import ChaptersListQuery from '../chapters/ChaptersListQuery';
+import mockChapters from '../chapters/chapters';
 import './App.css';
 
 const getChapters = ({ first, after = 0 }) => {
   const chapters = mockChapters
-    .map(chapter => ({
-      cursor: chapter.id,
+    .filter((_, index) => !first || (index > after && index <= after + first))
+    .map((chapter, index) => ({
+      cursor: index,
       node: { ...chapter, __typename: 'Chapter' },
       __typename: 'ChapterNode'
-    }))
-    .filter(
-      chapter =>
-        !first || (chapter.node.id > after && chapter.node.id <= after + first)
-    );
-  console.log(
-    chapters[chapters.length - 1].node.id !==
-      mockChapters[mockChapters.length - 1].id
-  );
+    }));
   return {
     edges: chapters,
     pageInfo: {
-      endCursor: chapters[chapters.length - 1].node.id,
-      hasNextPage: false,
+      endCursor: chapters.length,
+      hasNextPage: chapters.length < mockChapters.length,
       __typename: 'ChapterPageInfo'
     },
     __typename: 'ChapterPayload'
@@ -35,7 +28,7 @@ const getChapters = ({ first, after = 0 }) => {
 const client = new ApolloClient({
   clientState: {
     defaults: {
-      chapters: getChapters({})
+      chapters: getChapters({ first: 10 })
     },
     resolvers: {
       Query: {
