@@ -14,12 +14,11 @@ const ChaptersList = ({ chapters, onLoadMore }) => (
     className="list-group chapters-list"
     onScroll={e => handleScroll(e, onLoadMore)}
   >
-    {chapters &&
-      chapters.edges.map(({ node }) => (
-        <li key={node.id} className="list-group-item">
-          {node.title}
-        </li>
-      ))}
+    {chapters.map(({ id, title }) => (
+      <li key={id} className="list-group-item">
+        {title}
+      </li>
+    ))}
   </ul>
 );
 

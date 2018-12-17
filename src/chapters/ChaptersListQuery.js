@@ -5,18 +5,10 @@ import gql from 'graphql-tag';
 import ChaptersList from './ChaptersList';
 
 const chaptersQuery = gql`
-  query chapters($cursor: String) {
-    chapters(first: 10, after: $cursor) @client {
-      edges {
-        node {
-          id
-          title
-        }
-      }
-      pageInfo {
-        endCursor
-        hasNextPage
-      }
+  query chapters($offset: String) {
+    chapters(limit: 10, offset: $offset) @client {
+      id
+      title
     }
   }
 `;
@@ -26,27 +18,17 @@ const ChaptersListQuery = () => (
     {({ data, fetchMore }) =>
       data && (
         <ChaptersList
-          chapters={data.chapters}
+          chapters={data.chapters || []}
           onLoadMore={() =>
             fetchMore({
               variables: {
-                cursor: data.chapters.pageInfo.endCursor
+                offset: data.chapters.length
               },
-              updateQuery: (previousResult, { fetchMoreResult }) => {
-                const newEdges = fetchMoreResult.chapters.edges;
-                const pageInfo = fetchMoreResult.chapters.pageInfo;
-
-                return newEdges.length
-                  ? {
-                      // Put the new data at the end of the list and update `pageInfo`
-                      // so we have the new `endCursor` and `hasNextPage` values
-                      chapters: {
-                        __typename: previousResult.chapters.__typename,
-                        edges: [...previousResult.chapters.edges, ...newEdges],
-                        pageInfo
-                      }
-                    }
-                  : previousResult;
+              updateQuery: (prev, { fetchMoreResult }) => {
+                if (!fetchMoreResult) return prev;
+                return Object.assign({}, prev, {
+                  chapters: [...prev.chapters, ...fetchMoreResult.chapters]
+                });
               }
             })
           }

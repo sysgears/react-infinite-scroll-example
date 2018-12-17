@@ -6,29 +6,15 @@ import ChaptersListQuery from '../chapters/ChaptersListQuery';
 import mockChapters from '../chapters/chapters';
 import './App.css';
 
-const getChapters = ({ first, after = 0 }) => {
-  const chapters = mockChapters
-    .filter((_, index) => !first || (index > after && index <= after + first))
-    .map((chapter, index) => ({
-      cursor: index,
-      node: { ...chapter, __typename: 'Chapter' },
-      __typename: 'ChapterNode'
-    }));
-  return {
-    edges: chapters,
-    pageInfo: {
-      endCursor: chapters.length,
-      hasNextPage: chapters.length < mockChapters.length,
-      __typename: 'ChapterPageInfo'
-    },
-    __typename: 'ChapterPayload'
-  };
-};
+const getChapters = ({ limit, offset = 0 }) =>
+  mockChapters
+    .filter((_, index) => !limit || (index > offset && index <= offset + limit))
+    .map(chapter => ({ ...chapter, __typename: 'Chapter' }));
 
 const client = new ApolloClient({
   clientState: {
     defaults: {
-      chapters: getChapters({ first: 10 })
+      chapters: getChapters({ limit: 10 })
     },
     resolvers: {
       Query: {
