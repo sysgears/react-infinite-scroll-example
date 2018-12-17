@@ -10,16 +10,19 @@ const handleScroll = ({ currentTarget }, onLoadMore) => {
 };
 
 const ChaptersList = ({ chapters, onLoadMore }) => (
-  <ul
-    className="list-group chapters-list"
-    onScroll={e => handleScroll(e, onLoadMore)}
-  >
-    {chapters.map(({ id, title }) => (
-      <li key={id} className="list-group-item">
-        {title}
-      </li>
-    ))}
-  </ul>
+  <div>
+    <h2>Chapters list</h2>
+    <ul
+      className="list-group chapters-list"
+      onScroll={e => handleScroll(e, onLoadMore)}
+    >
+      {chapters.map(({ id, title }) => (
+        <li key={id} className="list-group-item">
+          {title}
+        </li>
+      ))}
+    </ul>
+  </div>
 );
 
 export default ChaptersList;

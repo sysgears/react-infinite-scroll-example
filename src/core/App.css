@@ -1,6 +1,6 @@
 .chapters-list {
-  margin-left: 15px;
-  max-height: 200px;
-  width: fit-content;
+  margin-top: 15px;
+  max-height: 300px;
+  width: 500px;
   overflow: auto;
 }
