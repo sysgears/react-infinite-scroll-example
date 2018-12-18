@@ -8,7 +8,7 @@ GraphQL is an amazing way to query and manipulate data. You describe your data, 
 
 ### Write component with a query
 
-We can use GraphQL query to fetch our chapters. For that create `ChaptersListQuery.js` file in `src/chapters` folder and write a query.
+We use GraphQL query to fetch our chapters. For that create `ChaptersListQuery.js` file in `src/chapters` folder and write a query.
 
 - `limit` - the number of items that we receive at one time
 - `offset` - pointer to the item starting from which we retrieve data (equals length of the previous data retrieval)
@@ -25,7 +25,7 @@ const chaptersQuery = gql`
 `;
 ```
 
-Then we can use Query component from Apollo. The main idea there is to implement `onLoadMore` function which execute `fetchMore` to loading more data and merge it with already fetched chapters. So we add `ChaptersListQuery` component into our `ChaptersListQuery.js`.
+Then we use Query component from Apollo. The main idea there is to implement `onLoadMore` function which execute `fetchMore` to loading more data and merge it with already fetched chapters. So we add `ChaptersListQuery` component into our `ChaptersListQuery.js`.
 
 ```js
 const ChaptersListQuery = () => (
