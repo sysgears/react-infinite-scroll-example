@@ -91,3 +91,6 @@ const handleScroll = ({ currentTarget }, onLoadMore) => {
 ```
 
 Congratulations! You've done beautifully!
+
+Link with the example on SandBox: [https://codesandbox.io/s/github/alekseyzadorozhniy/infinite-scroll/tree/master/](https://codesandbox.io/s/github/alekseyzadorozhniy/infinite-scroll/tree/master/)
+Link with example repository on Github: [https://github.com/alekseyzadorozhniy/infinite-scroll](https://github.com/alekseyzadorozhniy/infinite-scroll)
