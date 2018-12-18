@@ -1,8 +1,8 @@
 import mockChapters from '../data/chapters';
 
-const getChapters = ({ limit, offset = 0 }) =>
+const getChapters = ({ limit = 10, offset = 0 }) =>
   mockChapters
-    .filter((_, index) => !limit || (index > offset && index <= offset + limit))
+    .slice(offset, offset + limit)
     .map(chapter => ({ ...chapter, __typename: 'Chapter' }));
 
 export default {
