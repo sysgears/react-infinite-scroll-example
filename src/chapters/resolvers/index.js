@@ -1,4 +1,4 @@
-import mockChapters from '../chapters';
+import mockChapters from '../data/chapters';
 
 const getChapters = ({ limit, offset = 0 }) =>
   mockChapters
