@@ -2,9 +2,11 @@
 
 ![alt text](https://cdn.searchenginejournal.com/wp-content/uploads/2014/02/infinite-scrolling1.jpg 'Infinite Scroll')
 
-> Using Apollo Client, React and Apollo Link State for implementing Offset-based pagination. Apollo Link State can be replaced with any real GraphQL server.
+> Using Apollo Client, React and Apollo Link State for implementing Offset-based pagination.
 
 GraphQL is an amazing way to query and manipulate data. You describe your data, ask for what you want, and get predictable results. And Apollo Client is the best way to use GraphQL to build client applications. One of the most interesting solution is implementing offset-based pagination as infinite scroll using `fetchMore` function. It's incredibly simple and very powerful functionality.
+
+Apollo Link State is used to simplify providing of data and can be replaced by any real GraphQL server.
 
 ### Write component with a query
 
