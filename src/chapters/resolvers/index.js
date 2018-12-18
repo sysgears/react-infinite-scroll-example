@@ -7,7 +7,7 @@ const getChapters = ({ limit = 10, offset = 0 }) =>
 
 export default {
   defaults: {
-    chapters: getChapters({ limit: 10 })
+    chapters: getChapters({})
   },
   resolvers: {
     Query: {
