@@ -9,11 +9,11 @@ const handleScroll = ({ currentTarget }, onLoadMore) => {
   }
 };
 
-const ChaptersList = ({ chapters, onLoadMore }) => (
+const ChapterList = ({ chapters, onLoadMore }) => (
   <div>
-    <h2>Chapters list</h2>
+    <h2>Chapter list</h2>
     <ul
-      className="list-group chapters-list"
+      className="list-group chapter-list"
       onScroll={e => handleScroll(e, onLoadMore)}
     >
       {chapters.map(({ id, title }) => (
@@ -25,4 +25,4 @@ const ChaptersList = ({ chapters, onLoadMore }) => (
   </div>
 );
 
-export default ChaptersList;
+export default ChapterList;

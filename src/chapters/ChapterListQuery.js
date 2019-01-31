@@ -2,9 +2,9 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import ChaptersList from './ChaptersList';
+import ChapterList from './ChapterList';
 
-const chaptersQuery = gql`
+const chapterQuery = gql`
   query chapters($offset: String) {
     chapters(limit: 10, offset: $offset) @client {
       id
@@ -13,11 +13,11 @@ const chaptersQuery = gql`
   }
 `;
 
-const ChaptersListQuery = () => (
-  <Query query={chaptersQuery}>
+const ChapterListQuery = () => (
+  <Query query={chapterQuery}>
     {({ data, fetchMore }) =>
       data && (
-        <ChaptersList
+        <ChapterList
           chapters={data.chapters || []}
           onLoadMore={() =>
             fetchMore({
@@ -38,4 +38,4 @@ const ChaptersListQuery = () => (
   </Query>
 );
 
-export default ChaptersListQuery;
+export default ChapterListQuery;
